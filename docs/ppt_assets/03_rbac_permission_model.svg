@@ -1,0 +1,63 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:42px;font-weight:800;fill:#111827}
+      .sub{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:21px;fill:#64748b}
+      .h{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:27px;font-weight:800;fill:#1f2937;text-anchor:middle}
+      .p{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:19px;fill:#475569;text-anchor:middle}
+      .tiny{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:17px;fill:#64748b;text-anchor:middle}
+      .box{rx:24;ry:24;stroke-width:2.4}
+      .arrow{stroke:#7c3aed;stroke-width:5;fill:none;marker-end:url(#arrowHead)}
+      .dash{stroke-dasharray:10 8}
+    </style>
+    <marker id="arrowHead" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7c3aed"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="800" y="74" text-anchor="middle" class="title">后台权限控制模型</text>
+  <text x="800" y="112" text-anchor="middle" class="sub">只有具备后台权限的用户可以登录，进入后再按菜单权限与按钮权限控制可见范围</text>
+
+  <!-- Top auth chain -->
+  <rect x="90" y="190" width="310" height="150" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="245" y="243" class="h">用户账号</text>
+  <text x="245" y="280" class="p">手机号 / 密码</text>
+  <text x="245" y="310" class="tiny">求职者 / 管理员 / 超级管理员</text>
+
+  <rect x="550" y="170" width="500" height="190" class="box" fill="#ede9fe" stroke="#a78bfa"/>
+  <text x="800" y="225" class="h">登录鉴权</text>
+  <text x="800" y="265" class="p">校验账号状态、密码、后台访问权限</text>
+  <text x="800" y="297" class="p">登录成功后写入 Redis Token</text>
+  <text x="800" y="329" class="tiny">无后台权限：拒绝进入后台系统</text>
+
+  <rect x="1200" y="190" width="310" height="150" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="1355" y="243" class="h">后台首页</text>
+  <text x="1355" y="280" class="p">数据总览</text>
+  <text x="1355" y="310" class="tiny">只展示有权限菜单</text>
+
+  <path d="M400 265 L540 265" class="arrow"/>
+  <path d="M1050 265 L1190 265" class="arrow"/>
+
+  <!-- Bottom permission blocks -->
+  <rect x="150" y="560" width="360" height="190" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="330" y="618" class="h">菜单级权限</text>
+  <text x="330" y="658" class="p">控制侧边栏入口</text>
+  <text x="330" y="690" class="p">用户管理 / 上传简历 / 上传 JD</text>
+  <text x="330" y="722" class="tiny">没有菜单权限则页面不可进入</text>
+
+  <rect x="620" y="560" width="360" height="190" class="box" fill="#fee2e2" stroke="#f87171"/>
+  <text x="800" y="618" class="h">按钮级权限</text>
+  <text x="800" y="658" class="p">控制具体操作按钮</text>
+  <text x="800" y="690" class="p">新增 / 编辑 / 删除 / 评分 / 提取</text>
+  <text x="800" y="722" class="tiny">页面可看，但操作受限</text>
+
+  <rect x="1090" y="560" width="360" height="190" class="box" fill="#ccfbf1" stroke="#14b8a6"/>
+  <text x="1270" y="618" class="h">接口级兜底</text>
+  <text x="1270" y="658" class="p">后端注解校验权限码</text>
+  <text x="1270" y="690" class="p">防止绕过前端按钮直接请求</text>
+  <text x="1270" y="722" class="tiny">前后端双层控制</text>
+
+  <!-- Orthogonal split from auth box. Routes stay in the gap and enter each box from top edge. -->
+  <path d="M800 360 L800 455" class="arrow"/>
+  <path d="M800 455 L330 455 L330 550" class="arrow dash"/>
+  <path d="M800 455 L800 550" class="arrow dash"/>
+  <path d="M800 455 L1270 455 L1270 550" class="arrow dash"/>
+</svg>

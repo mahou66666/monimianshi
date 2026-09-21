@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  interview-elf-agent:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - QDRANT_WAIT_ON_STARTUP=true
+      - QDRANT_WAIT_TIMEOUT_SECONDS=60
+      - QDRANT_WAIT_INTERVAL_SECONDS=1
+    volumes:
+      - ./models:/app/models
+      - ./data_source:/app/data_source
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()\""]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    depends_on:
+      - qdrant  # [新增] 确保 Agent 启动前 Qdrant 已经就绪
+
+  # [新增] Qdrant 向量数据库服务
+  qdrant:
+    image: qdrant/qdrant:v1.16.2   # 指定稳定版本
+    ports:
+      - "6333:6333"                # 暴露 API 端口 (HTTP)
+      - "6334:6334"                # 暴露 gRPC 端口
+    volumes:
+      - ./qdrant_data:/qdrant/storage  # [重要] 将数据持久化保存到当前目录下的 qdrant_data 文件夹
+    restart: always

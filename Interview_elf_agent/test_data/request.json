@@ -1,0 +1,9 @@
+{
+  "resume_text": "",
+  "input_data": {},
+  "jd_text": "",
+  "task_type": "interview",
+  "metadata": {
+    "note": "Fill resume_text/jd_text or use input_data from test_data/input_data.json."
+  }
+}

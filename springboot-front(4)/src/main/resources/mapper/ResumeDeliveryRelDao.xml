@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.ResumeDeliveryRelDao">
+
+    <resultMap type="com.example.springbootfront.entity.ResumeDeliveryRel" id="ResumeDeliveryRelMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="resumeId" column="resume_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="jdJobId" column="jd_job_id" jdbcType="INTEGER"/>
+        <result property="deliveryCount" column="delivery_count" jdbcType="INTEGER"/>
+        <result property="firstDeliveryTime" column="first_delivery_time" jdbcType="TIMESTAMP"/>
+        <result property="latestDeliveryTime" column="latest_delivery_time" jdbcType="TIMESTAMP"/>
+        <result property="deliveryStatus" column="delivery_status" jdbcType="INTEGER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ResumeDeliveryRelMap">
+        select id,
+               user_id,
+               resume_id,
+               company_id,
+               jd_job_id,
+               delivery_count,
+               first_delivery_time,
+               latest_delivery_time,
+               delivery_status,
+               remark,
+               create_time,
+               update_time
+        from resume_delivery_rel
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ResumeDeliveryRelMap">
+        select
+        id, user_id, resume_id, company_id, jd_job_id, delivery_count, first_delivery_time, latest_delivery_time,
+        delivery_status, remark, create_time, update_time
+        from resume_delivery_rel
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="jdJobId != null">
+                and jd_job_id = #{jdJobId}
+            </if>
+            <if test="deliveryCount != null">
+                and delivery_count = #{deliveryCount}
+            </if>
+            <if test="firstDeliveryTime != null">
+                and first_delivery_time = #{firstDeliveryTime}
+            </if>
+            <if test="latestDeliveryTime != null">
+                and latest_delivery_time = #{latestDeliveryTime}
+            </if>
+            <if test="deliveryStatus != null">
+                and delivery_status = #{deliveryStatus}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from resume_delivery_rel
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="jdJobId != null">
+                and jd_job_id = #{jdJobId}
+            </if>
+            <if test="deliveryCount != null">
+                and delivery_count = #{deliveryCount}
+            </if>
+            <if test="firstDeliveryTime != null">
+                and first_delivery_time = #{firstDeliveryTime}
+            </if>
+            <if test="latestDeliveryTime != null">
+                and latest_delivery_time = #{latestDeliveryTime}
+            </if>
+            <if test="deliveryStatus != null">
+                and delivery_status = #{deliveryStatus}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_delivery_rel(user_id, resume_id, company_id, jd_job_id, delivery_count, first_delivery_time,
+                                        latest_delivery_time, delivery_status, remark, create_time, update_time)
+        values (#{userId}, #{resumeId}, #{companyId}, #{jdJobId}, #{deliveryCount}, #{firstDeliveryTime},
+                #{latestDeliveryTime}, #{deliveryStatus}, #{remark}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_delivery_rel(user_id, resume_id, company_id, jd_job_id, delivery_count, first_delivery_time,
+        latest_delivery_time, delivery_status, remark, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.resumeId}, #{entity.companyId}, #{entity.jdJobId}, #{entity.deliveryCount},
+            #{entity.firstDeliveryTime}, #{entity.latestDeliveryTime}, #{entity.deliveryStatus}, #{entity.remark},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_delivery_rel(user_id, resume_id, company_id, jd_job_id, delivery_count, first_delivery_time,
+        latest_delivery_time, delivery_status, remark, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.resumeId}, #{entity.companyId}, #{entity.jdJobId}, #{entity.deliveryCount},
+            #{entity.firstDeliveryTime}, #{entity.latestDeliveryTime}, #{entity.deliveryStatus}, #{entity.remark},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        resume_id = values(resume_id),
+        company_id = values(company_id),
+        jd_job_id = values(jd_job_id),
+        delivery_count = values(delivery_count),
+        first_delivery_time = values(first_delivery_time),
+        latest_delivery_time = values(latest_delivery_time),
+        delivery_status = values(delivery_status),
+        remark = values(remark),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update resume_delivery_rel
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="resumeId != null">
+                resume_id = #{resumeId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="jdJobId != null">
+                jd_job_id = #{jdJobId},
+            </if>
+            <if test="deliveryCount != null">
+                delivery_count = #{deliveryCount},
+            </if>
+            <if test="firstDeliveryTime != null">
+                first_delivery_time = #{firstDeliveryTime},
+            </if>
+            <if test="latestDeliveryTime != null">
+                latest_delivery_time = #{latestDeliveryTime},
+            </if>
+            <if test="deliveryStatus != null">
+                delivery_status = #{deliveryStatus},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from resume_delivery_rel
+        where id = #{id}
+    </delete>
+
+</mapper>
+

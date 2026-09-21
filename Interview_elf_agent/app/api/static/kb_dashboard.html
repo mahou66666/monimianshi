@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Base Control</title>
+    <style>
+      :root {
+        --bg-1: #f6f3ef;
+        --bg-2: #f0f7f4;
+        --ink: #1e1e1e;
+        --muted: #5a5a5a;
+        --accent: #2f6f65;
+        --accent-2: #c39b4f;
+        --card: #ffffff;
+        --border: #e2ddd6;
+        --shadow: 0 10px 30px rgba(34, 34, 34, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Atkinson Hyperlegible", "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: radial-gradient(circle at top left, var(--bg-2), var(--bg-1));
+        min-height: 100vh;
+      }
+      header {
+        padding: 28px 6vw 18px;
+      }
+      header h1 {
+        font-size: clamp(26px, 3vw, 40px);
+        margin: 0 0 8px;
+        letter-spacing: 0.5px;
+      }
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+      main {
+        padding: 0 6vw 48px;
+        display: grid;
+        gap: 20px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: auto -30px -30px auto;
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(130deg, rgba(47, 111, 101, 0.12), rgba(195, 155, 79, 0.08));
+        border-radius: 50%;
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .pill {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(47, 111, 101, 0.12);
+        color: var(--accent);
+        font-size: 12px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      input {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+        min-width: 220px;
+      }
+      button {
+        border: none;
+        border-radius: 10px;
+        padding: 8px 14px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: var(--accent-2);
+      }
+      pre {
+        background: #fbfaf8;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        white-space: pre-wrap;
+        font-size: 12px;
+      }
+      .table {
+        display: grid;
+        gap: 10px;
+      }
+      .point {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px;
+        background: #faf9f6;
+      }
+      .point-title {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .fade-in {
+        animation: fade 0.35s ease;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Knowledge Base Control</h1>
+      <p>监控 Qdrant 连接、集合状态与样本记录（需 API Key）。</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>连接设置</h2>
+        <div class="controls">
+          <input id="apiKey" placeholder="X-API-Key" />
+          <button id="saveKey">保存 Key</button>
+          <button id="refresh" class="secondary">刷新</button>
+        </div>
+        <p id="status" class="muted">未连接</p>
+      </section>
+
+      <section class="grid">
+        <div class="card fade-in">
+          <h2>集合概览</h2>
+          <div id="overview" class="muted">等待加载...</div>
+        </div>
+        <div class="card fade-in">
+          <h2>索引与统计</h2>
+          <div id="stats" class="muted">等待加载...</div>
+        </div>
+      </section>
+
+      <section class="card fade-in">
+        <h2>样本记录</h2>
+        <div class="row">
+          <span class="pill">滚动读取</span>
+          <span class="muted">默认取 20 条</span>
+        </div>
+        <div class="controls">
+          <button id="loadPoints">加载样本</button>
+        </div>
+        <div id="points" class="table"></div>
+      </section>
+
+      <section class="card fade-in">
+        <h2>原始响应</h2>
+        <pre id="raw">等待加载...</pre>
+      </section>
+    </main>
+
+    <script>
+      const apiKeyInput = document.getElementById("apiKey");
+      const statusEl = document.getElementById("status");
+      const overviewEl = document.getElementById("overview");
+      const statsEl = document.getElementById("stats");
+      const rawEl = document.getElementById("raw");
+      const pointsEl = document.getElementById("points");
+      let nextOffset = null;
+
+      apiKeyInput.value = localStorage.getItem("kb_api_key") || "";
+
+      const headers = () => ({
+        "Content-Type": "application/json",
+        "X-API-Key": apiKeyInput.value || "",
+      });
+
+      const setStatus = (text, ok = true) => {
+        statusEl.textContent = text;
+        statusEl.style.color = ok ? "var(--accent)" : "#b02424";
+      };
+
+      const formatOverview = (data) => {
+        const lines = [];
+        lines.push(`集合: ${data.collection_name || "-"}`);
+        lines.push(`存在: ${data.collection_exists ? "是" : "否"}`);
+        if (data.vector_size) lines.push(`向量维度: ${data.vector_size}`);
+        if (data.points_count_exact !== undefined)
+          lines.push(`点数: ${data.points_count_exact}`);
+        if (Array.isArray(data.collections))
+          lines.push(`所有集合: ${data.collections.join(", ")}`);
+        overviewEl.textContent = lines.join("\n");
+
+        const stats = [];
+        if (Array.isArray(data.payload_schema))
+          stats.push(`字段索引: ${data.payload_schema.join(", ")}`);
+        if (data.points_count) stats.push(`points_count: ${data.points_count}`);
+        statsEl.textContent = stats.length ? stats.join("\n") : "暂无统计";
+      };
+
+      const fetchOverview = async () => {
+        setStatus("连接中...", true);
+        try {
+          const resp = await fetch("/admin/kb/overview", { headers: headers() });
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+          const data = await resp.json();
+          formatOverview(data);
+          rawEl.textContent = JSON.stringify(data, null, 2);
+          setStatus("已连接", true);
+        } catch (err) {
+          setStatus(`连接失败: ${err.message}`, false);
+          overviewEl.textContent = "无法获取";
+          statsEl.textContent = "无法获取";
+          rawEl.textContent = err.message;
+        }
+      };
+
+      const fetchPoints = async () => {
+        try {
+          const url = new URL("/admin/kb/points", window.location.origin);
+          if (nextOffset) url.searchParams.set("offset", nextOffset);
+          const resp = await fetch(url.toString(), { headers: headers() });
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+          const data = await resp.json();
+          nextOffset = data.next_offset;
+          pointsEl.innerHTML = "";
+          if (!data.items || !data.items.length) {
+            pointsEl.innerHTML = "<div class='muted'>暂无样本</div>";
+            return;
+          }
+          data.items.forEach((item) => {
+            const div = document.createElement("div");
+            div.className = "point";
+            const title = document.createElement("div");
+            title.className = "point-title";
+            title.textContent = `ID: ${item.id}`;
+            const content = document.createElement("pre");
+            content.textContent = JSON.stringify(item.payload, null, 2);
+            div.appendChild(title);
+            div.appendChild(content);
+            pointsEl.appendChild(div);
+          });
+        } catch (err) {
+          pointsEl.innerHTML = `<div class='muted'>加载失败: ${err.message}</div>`;
+        }
+      };
+
+      document.getElementById("saveKey").addEventListener("click", () => {
+        localStorage.setItem("kb_api_key", apiKeyInput.value || "");
+        setStatus("API Key 已保存", true);
+      });
+
+      document.getElementById("refresh").addEventListener("click", fetchOverview);
+      document.getElementById("loadPoints").addEventListener("click", fetchPoints);
+
+      fetchOverview();
+    </script>
+  </body>
+</html>

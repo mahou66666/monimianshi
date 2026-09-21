@@ -1,0 +1,87 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:44px;font-weight:800;fill:#0f172a}
+      .sub{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:21px;fill:#64748b}
+      .box{rx:22;ry:22;stroke-width:2.2}
+      .field{font-family:Consolas,"Microsoft YaHei",monospace;font-size:22px;font-weight:700;fill:#1e293b;text-anchor:middle}
+      .cn{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:17px;fill:#475569;text-anchor:middle}
+      .arrow{stroke:#14b8a6;stroke-width:4.5;fill:none;marker-end:url(#arrowHead)}
+      .head{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:26px;font-weight:800;fill:#ffffff;text-anchor:middle}
+    </style>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#14b8a6"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="800" y="72" text-anchor="middle" class="title">ResumeResultDTO 输出结构</text>
+  <text x="800" y="111" text-anchor="middle" class="sub">算法把非结构化简历转成统一 JSON 字段，后台再转换成可展示、可编辑的简历内容</text>
+
+  <!-- Center source -->
+  <rect x="585" y="160" width="430" height="110" class="box" fill="#0f766e" stroke="#0f766e"/>
+  <text x="800" y="205" class="head">ResumeResultDTO</text>
+  <text x="800" y="238" class="head">结构化简历结果</text>
+
+  <!-- Clean split bus: one vertical trunk, two horizontal buses, then vertical arrows. -->
+  <path d="M800 270 L800 320" class="arrow"/>
+  <path d="M200 320 L1400 320" stroke="#14b8a6" stroke-width="4.5" fill="none"/>
+  <path d="M200 545 L1400 545" stroke="#14b8a6" stroke-width="4.5" fill="none"/>
+  <path d="M200 320 L200 352" class="arrow"/>
+  <path d="M600 320 L600 352" class="arrow"/>
+  <path d="M1000 320 L1000 352" class="arrow"/>
+  <path d="M1400 320 L1400 352" class="arrow"/>
+  <path d="M200 545 L200 577" class="arrow"/>
+  <path d="M600 545 L600 577" class="arrow"/>
+  <path d="M1000 545 L1000 577" class="arrow"/>
+  <path d="M1400 545 L1400 577" class="arrow"/>
+
+  <!-- Top row fields -->
+  <g transform="translate(45,360)">
+    <rect width="310" height="120" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+    <text x="155" y="46" class="field">BASIC_INFO</text>
+    <text x="155" y="78" class="cn">姓名 / 手机 / 邮箱 / 学校 / 学历</text>
+    <text x="155" y="102" class="cn">求职意向 job_intention</text>
+  </g>
+  <g transform="translate(445,360)">
+    <rect width="310" height="120" class="box" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="155" y="46" class="field">EDUCATION</text>
+    <text x="155" y="78" class="cn">教育经历列表</text>
+    <text x="155" y="102" class="cn">规则补强：学校 + 学历 + 时间</text>
+  </g>
+  <g transform="translate(845,360)">
+    <rect width="310" height="120" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="155" y="46" class="field">SKILLS</text>
+    <text x="155" y="78" class="cn">技能关键词或完整技能段落</text>
+    <text x="155" y="102" class="cn">支持字符串或列表</text>
+  </g>
+  <g transform="translate(1245,360)">
+    <rect width="310" height="120" class="box" fill="#fae8ff" stroke="#c084fc"/>
+    <text x="155" y="46" class="field">PROJECT_EXPERIENCE</text>
+    <text x="155" y="78" class="cn">项目经历列表</text>
+    <text x="155" y="102" class="cn">尽量保留职责与技术栈</text>
+  </g>
+
+  <!-- Bottom row fields -->
+  <g transform="translate(45,585)">
+    <rect width="310" height="120" class="box" fill="#fee2e2" stroke="#fb7185"/>
+    <text x="155" y="46" class="field">WORK_EXPERIENCE</text>
+    <text x="155" y="78" class="cn">正式工作经历</text>
+    <text x="155" y="102" class="cn">按段落列表返回</text>
+  </g>
+  <g transform="translate(445,585)">
+    <rect width="310" height="120" class="box" fill="#ccfbf1" stroke="#14b8a6"/>
+    <text x="155" y="46" class="field">INTERNSHIP</text>
+    <text x="155" y="78" class="cn">实习经历列表</text>
+    <text x="155" y="102" class="cn">后台页面重点展示字段</text>
+  </g>
+  <g transform="translate(845,585)">
+    <rect width="310" height="120" class="box" fill="#e0e7ff" stroke="#818cf8"/>
+    <text x="155" y="46" class="field">AWARDS</text>
+    <text x="155" y="78" class="cn">获奖经历</text>
+    <text x="155" y="102" class="cn">支持字符串或列表</text>
+  </g>
+  <g transform="translate(1245,585)">
+    <rect width="310" height="120" class="box" fill="#ffedd5" stroke="#fb923c"/>
+    <text x="155" y="46" class="field">RAW_CONTENT</text>
+    <text x="155" y="78" class="cn">原始文本兜底保留</text>
+    <text x="155" y="102" class="cn">异常时也尽量保留可追溯内容</text>
+  </g>
+</svg>

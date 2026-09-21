@@ -1,0 +1,36 @@
+# ???????
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+
+# ? ????????? khz
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# ????????
+server.port=8080
+# ?? MyBatis ?????? SQL ??? XML ??
+mybatis.mapper-locations=classpath:mapper/*.xml
+
+# Resume parser service
+resume.parser.base-url=${RESUME_PARSER_BASE_URL:http://127.0.0.1:8089}
+resume.parser.timeout-ms=${RESUME_PARSER_TIMEOUT_MS:180000}
+
+# Resume problem analysis agent service (Interview_elf_agent)
+resume.problem-agent.base-url=${RESUME_PROBLEM_AGENT_BASE_URL:http://127.0.0.1:8000}
+resume.problem-agent.timeout-ms=${RESUME_PROBLEM_AGENT_TIMEOUT_MS:600000}
+resume.problem-agent.api-key=${RESUME_PROBLEM_AGENT_API_KEY}
+
+# SiliconFlow model interface (resume_revision)
+resume.siliconflow.base-url=${RESUME_SILICONFLOW_BASE_URL:https://api.siliconflow.cn/v1/chat/completions}
+resume.siliconflow.api-key=${RESUME_SILICONFLOW_API_KEY}
+resume.siliconflow.model=${RESUME_SILICONFLOW_MODEL:Qwen/Qwen3.8-27B}
+resume.siliconflow.timeout-ms=${RESUME_SILICONFLOW_TIMEOUT_MS:180000}
+resume.siliconflow.temperature=${RESUME_SILICONFLOW_TEMPERATURE:0.3}
+resume.siliconflow.max-tokens=${RESUME_SILICONFLOW_MAX_TOKENS:4096}
+# Resume revision uses fast inference by default. Set RESUME_SILICONFLOW_ENABLE_THINKING=true to re-enable reasoning.
+resume.siliconflow.enable-thinking=${RESUME_SILICONFLOW_ENABLE_THINKING:false}
+
+# Upload limits
+spring.servlet.multipart.max-file-size=${SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE:10MB}
+spring.servlet.multipart.max-request-size=${SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE:10MB}

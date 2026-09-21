@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.UserCertificateDao">
+
+    <resultMap type="com.example.springbootfront.entity.UserCertificate" id="UserCertificateMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="certName" column="cert_name" jdbcType="VARCHAR"/>
+        <result property="issueOrg" column="issue_org" jdbcType="VARCHAR"/>
+        <result property="issueDate" column="issue_date" jdbcType="TIMESTAMP"/>
+        <result property="certUrl" column="cert_url" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserCertificateMap">
+        select id,
+               user_id,
+               cert_name,
+               issue_org,
+               issue_date,
+               cert_url,
+               create_time,
+               update_time
+        from user_certificate
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserCertificateMap">
+        select
+        id, user_id, cert_name, issue_org, issue_date, cert_url, create_time, update_time
+        from user_certificate
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="certName != null and certName != ''">
+                and cert_name = #{certName}
+            </if>
+            <if test="issueOrg != null and issueOrg != ''">
+                and issue_org = #{issueOrg}
+            </if>
+            <if test="issueDate != null">
+                and issue_date = #{issueDate}
+            </if>
+            <if test="certUrl != null and certUrl != ''">
+                and cert_url = #{certUrl}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user_certificate
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="certName != null and certName != ''">
+                and cert_name = #{certName}
+            </if>
+            <if test="issueOrg != null and issueOrg != ''">
+                and issue_org = #{issueOrg}
+            </if>
+            <if test="issueDate != null">
+                and issue_date = #{issueDate}
+            </if>
+            <if test="certUrl != null and certUrl != ''">
+                and cert_url = #{certUrl}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into user_certificate(user_id, cert_name, issue_org, issue_date, cert_url, create_time, update_time)
+        values (#{userId}, #{certName}, #{issueOrg}, #{issueDate}, #{certUrl}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user_certificate(user_id, cert_name, issue_org, issue_date, cert_url, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.certName}, #{entity.issueOrg}, #{entity.issueDate}, #{entity.certUrl},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user_certificate(user_id, cert_name, issue_org, issue_date, cert_url, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.certName}, #{entity.issueOrg}, #{entity.issueDate}, #{entity.certUrl},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        cert_name = values(cert_name),
+        issue_org = values(issue_org),
+        issue_date = values(issue_date),
+        cert_url = values(cert_url),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user_certificate
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="certName != null and certName != ''">
+                cert_name = #{certName},
+            </if>
+            <if test="issueOrg != null and issueOrg != ''">
+                issue_org = #{issueOrg},
+            </if>
+            <if test="issueDate != null">
+                issue_date = #{issueDate},
+            </if>
+            <if test="certUrl != null and certUrl != ''">
+                cert_url = #{certUrl},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from user_certificate
+        where id = #{id}
+    </delete>
+
+</mapper>
+

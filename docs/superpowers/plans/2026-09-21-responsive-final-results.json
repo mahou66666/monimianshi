@@ -1,0 +1,551 @@
+{
+  "regression": [
+    {
+      "path": "/profile/user-info",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/user-info",
+      "root": "user-info-container",
+      "overflow": false
+    },
+    {
+      "path": "/profile/user-info",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/user-info",
+      "root": "user-info-container",
+      "overflow": false
+    },
+    {
+      "path": "/profile/settings",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/settings",
+      "root": "settings-container",
+      "overflow": false
+    },
+    {
+      "path": "/profile/settings",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/settings",
+      "root": "settings-container",
+      "overflow": false
+    },
+    {
+      "path": "/profile/interview-history",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/interview-history",
+      "root": "history-page",
+      "overflow": false
+    },
+    {
+      "path": "/profile/interview-history",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/interview-history",
+      "root": "history-page",
+      "overflow": false
+    },
+    {
+      "path": "/profile/jd-history",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/jd-history",
+      "root": "history-page",
+      "overflow": false
+    },
+    {
+      "path": "/profile/jd-history",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/jd-history",
+      "root": "history-page",
+      "overflow": false
+    },
+    {
+      "path": "/jd/input",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/jd/input",
+      "root": "jd-input-container",
+      "overflow": false
+    },
+    {
+      "path": "/jd/input",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/jd/input",
+      "root": "jd-input-container",
+      "overflow": false
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/jd/result",
+      "root": "jd-result-container",
+      "overflow": false
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/jd/result",
+      "root": "jd-result-container",
+      "overflow": false
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/upload",
+      "root": "resume-upload-container",
+      "overflow": false
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/upload",
+      "root": "resume-upload-container",
+      "overflow": false
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/ai-result",
+      "root": "resume-result",
+      "overflow": false
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/ai-result",
+      "root": "resume-result",
+      "overflow": false
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/library",
+      "root": "resume-library",
+      "overflow": false
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/library",
+      "root": "resume-library",
+      "overflow": false
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/interview/summary",
+      "root": "summary-wrapper",
+      "overflow": false
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/interview/summary",
+      "root": "summary-wrapper",
+      "overflow": false
+    },
+    {
+      "path": "/account/security",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/security",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/account/security",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/security",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/account/login",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/login",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/account/login",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/login",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/account/register",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/register",
+      "root": "auth-page auth-page--hero",
+      "overflow": false
+    },
+    {
+      "path": "/account/register",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/register",
+      "root": "auth-page auth-page--hero",
+      "overflow": false
+    },
+    {
+      "path": "/account/reset-password",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/reset-password",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/account/reset-password",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/reset-password",
+      "root": "auth-page auth-page--compact",
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/",
+      "root": "home-container",
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/",
+      "root": "home-container",
+      "overflow": false
+    },
+    {
+      "path": "/upload",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/upload",
+      "root": "upload-placeholder",
+      "overflow": false
+    },
+    {
+      "path": "/upload",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/upload",
+      "root": "upload-placeholder",
+      "overflow": false
+    },
+    {
+      "path": "/profile",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile",
+      "root": "profile-container",
+      "overflow": false
+    },
+    {
+      "path": "/profile",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile",
+      "root": "profile-container",
+      "overflow": false
+    },
+    {
+      "path": "/interview",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/interview",
+      "root": "interview-wrapper",
+      "overflow": false
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/interview",
+      "root": "interview-wrapper",
+      "overflow": false
+    }
+  ],
+  "tinyBefore": [
+    {
+      "path": "/",
+      "w": 195,
+      "scroll": 214,
+      "main": 195
+    },
+    {
+      "path": "/profile",
+      "w": 195,
+      "scroll": 214,
+      "main": 195
+    },
+    {
+      "path": "/account/login?preview=1",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/jd/input",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/interview",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    }
+  ],
+  "tinyAfter": [
+    {
+      "path": "/",
+      "w": 160,
+      "scroll": 160,
+      "main": 160
+    },
+    {
+      "path": "/",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/",
+      "w": 320,
+      "scroll": 320,
+      "main": 320
+    },
+    {
+      "path": "/profile",
+      "w": 160,
+      "scroll": 160,
+      "main": 160
+    },
+    {
+      "path": "/profile",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/profile",
+      "w": 320,
+      "scroll": 320,
+      "main": 320
+    },
+    {
+      "path": "/account/login?preview=1",
+      "w": 160,
+      "scroll": 160,
+      "main": 160
+    },
+    {
+      "path": "/account/login?preview=1",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/account/login?preview=1",
+      "w": 320,
+      "scroll": 320,
+      "main": 320
+    },
+    {
+      "path": "/jd/input",
+      "w": 160,
+      "scroll": 160,
+      "main": 160
+    },
+    {
+      "path": "/jd/input",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/jd/input",
+      "w": 320,
+      "scroll": 320,
+      "main": 320
+    },
+    {
+      "path": "/interview",
+      "w": 160,
+      "scroll": 160,
+      "main": 160
+    },
+    {
+      "path": "/interview",
+      "w": 195,
+      "scroll": 195,
+      "main": 195
+    },
+    {
+      "path": "/interview",
+      "w": 320,
+      "scroll": 320,
+      "main": 320
+    }
+  ],
+  "narrowButtons": [
+    {
+      "path": "/account/login?preview=1",
+      "label": "验证码登录",
+      "rect": {
+        "x": 26,
+        "y": 165.4375,
+        "width": 108,
+        "height": 48
+      }
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "密码登录",
+      "rect": {
+        "x": 26,
+        "y": 217.4375,
+        "width": 108,
+        "height": 48
+      }
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "获取验证码",
+      "rect": {
+        "x": 30,
+        "y": 382.4375,
+        "width": 104,
+        "height": 68
+      }
+    },
+    {
+      "path": "/interview",
+      "label": "切换文字输入",
+      "rect": {
+        "x": 17.25,
+        "y": 338,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "path": "/interview",
+      "label": "开始录音",
+      "rect": {
+        "x": 71.75,
+        "y": 322,
+        "width": 76,
+        "height": 76
+      }
+    },
+    {
+      "path": "/interview",
+      "label": "结束面试",
+      "rect": {
+        "x": 60.5,
+        "y": 406,
+        "width": 44,
+        "height": 44
+      }
+    }
+  ],
+  "pageErrors": []
+}

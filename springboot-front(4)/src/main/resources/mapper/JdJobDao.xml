@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.JdJobDao">
+
+    <resultMap type="com.example.springbootfront.entity.JdJob" id="JdJobMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="jobCode" column="job_code" jdbcType="VARCHAR"/>
+        <result property="jobName" column="job_name" jdbcType="VARCHAR"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="jdDescriptions" column="jd_descriptions" jdbcType="VARCHAR"/>
+        <result property="jdCorereq" column="jd_corereq" jdbcType="VARCHAR"/>
+        <result property="jobType" column="job_type" jdbcType="INTEGER"/>
+        <result property="salaryRange" column="salary_range" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="JdJobMap">
+        select id,
+               job_code,
+               job_name,
+               company_id,
+               jd_descriptions,
+               jd_corereq,
+               job_type,
+               salary_range,
+               city,
+               status,
+               create_time,
+               update_time
+        from jd_job
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="JdJobMap">
+        select
+        id, job_code, job_name, company_id, jd_descriptions, jd_corereq, job_type, salary_range, city, status,
+        create_time, update_time
+        from jd_job
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="jobCode != null and jobCode != ''">
+                and job_code = #{jobCode}
+            </if>
+            <if test="jobName != null and jobName != ''">
+                and job_name = #{jobName}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="jdDescriptions != null and jdDescriptions != ''">
+                and jd_descriptions = #{jdDescriptions}
+            </if>
+            <if test="jdCorereq != null and jdCorereq != ''">
+                and jd_corereq = #{jdCorereq}
+            </if>
+            <if test="jobType != null">
+                and job_type = #{jobType}
+            </if>
+            <if test="salaryRange != null and salaryRange != ''">
+                and salary_range = #{salaryRange}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from jd_job
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="jobCode != null and jobCode != ''">
+                and job_code = #{jobCode}
+            </if>
+            <if test="jobName != null and jobName != ''">
+                and job_name = #{jobName}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="jdDescriptions != null and jdDescriptions != ''">
+                and jd_descriptions = #{jdDescriptions}
+            </if>
+            <if test="jdCorereq != null and jdCorereq != ''">
+                and jd_corereq = #{jdCorereq}
+            </if>
+            <if test="jobType != null">
+                and job_type = #{jobType}
+            </if>
+            <if test="salaryRange != null and salaryRange != ''">
+                and salary_range = #{salaryRange}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_job(job_code, job_name, company_id, jd_descriptions, jd_corereq, job_type, salary_range, city,
+                           status, create_time, update_time)
+        values (#{jobCode}, #{jobName}, #{companyId}, #{jdDescriptions}, #{jdCorereq}, #{jobType}, #{salaryRange},
+                #{city}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_job(job_code, job_name, company_id, jd_descriptions, jd_corereq, job_type, salary_range, city,
+        status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.jobCode}, #{entity.jobName}, #{entity.companyId}, #{entity.jdDescriptions}, #{entity.jdCorereq},
+            #{entity.jobType}, #{entity.salaryRange}, #{entity.city}, #{entity.status}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_job(job_code, job_name, company_id, jd_descriptions, jd_corereq, job_type, salary_range, city,
+        status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.jobCode}, #{entity.jobName}, #{entity.companyId}, #{entity.jdDescriptions}, #{entity.jdCorereq},
+            #{entity.jobType}, #{entity.salaryRange}, #{entity.city}, #{entity.status}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        job_code = values(job_code),
+        job_name = values(job_name),
+        company_id = values(company_id),
+        jd_descriptions = values(jd_descriptions),
+        jd_corereq = values(jd_corereq),
+        job_type = values(job_type),
+        salary_range = values(salary_range),
+        city = values(city),
+        status = values(status),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update jd_job
+        <set>
+            <if test="jobCode != null and jobCode != ''">
+                job_code = #{jobCode},
+            </if>
+            <if test="jobName != null and jobName != ''">
+                job_name = #{jobName},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="jdDescriptions != null and jdDescriptions != ''">
+                jd_descriptions = #{jdDescriptions},
+            </if>
+            <if test="jdCorereq != null and jdCorereq != ''">
+                jd_corereq = #{jdCorereq},
+            </if>
+            <if test="jobType != null">
+                job_type = #{jobType},
+            </if>
+            <if test="salaryRange != null and salaryRange != ''">
+                salary_range = #{salaryRange},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from jd_job
+        where id = #{id}
+    </delete>
+
+</mapper>
+

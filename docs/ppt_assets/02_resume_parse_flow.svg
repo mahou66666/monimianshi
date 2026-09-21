@@ -1,0 +1,84 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:42px;font-weight:800;fill:#172554}
+      .note{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:20px;fill:#64748b}
+      .box{rx:22;ry:22;stroke-width:2.5}
+      .label{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:25px;font-weight:800;fill:#1e293b;text-anchor:middle}
+      .desc{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:18px;fill:#475569;text-anchor:middle}
+      .arrow{stroke:#0284c7;stroke-width:5.5;fill:none;marker-end:url(#arrowHead)}
+      .step{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:18px;font-weight:700;fill:#ffffff;text-anchor:middle}
+    </style>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#0284c7"/></marker>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#ecfeff"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="78" text-anchor="middle" class="title">简历上传与批量提取流程</text>
+  <text x="800" y="116" text-anchor="middle" class="note">从 PDF 上传到结构化结果展示，算法服务只负责“切割解析”，后台负责管理与落库</text>
+
+  <!-- Top row -->
+  <g transform="translate(90,205)">
+    <circle cx="50" cy="36" r="28" fill="#2563eb"/><text x="50" y="43" class="step">1</text>
+    <rect x="0" y="78" width="230" height="116" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+    <text x="115" y="125" class="label">上传 PDF</text>
+    <text x="115" y="157" class="desc">管理员选择本地简历</text>
+    <text x="115" y="183" class="desc">文件保存到本地目录</text>
+  </g>
+
+  <g transform="translate(425,205)">
+    <circle cx="50" cy="36" r="28" fill="#2563eb"/><text x="50" y="43" class="step">2</text>
+    <rect x="0" y="78" width="250" height="116" class="box" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="125" y="125" class="label">写入记录</text>
+    <text x="125" y="157" class="desc">MySQL 保存文件地址</text>
+    <text x="125" y="183" class="desc">不把 PDF 本体塞进库</text>
+  </g>
+
+  <g transform="translate(790,205)">
+    <circle cx="50" cy="36" r="28" fill="#2563eb"/><text x="50" y="43" class="step">3</text>
+    <rect x="0" y="78" width="250" height="116" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="125" y="125" class="label">批量提取</text>
+    <text x="125" y="157" class="desc">创建异步任务</text>
+    <text x="125" y="183" class="desc">前端展示进度 x/y</text>
+  </g>
+
+  <g transform="translate(1165,205)">
+    <circle cx="50" cy="36" r="28" fill="#2563eb"/><text x="50" y="43" class="step">4</text>
+    <rect x="0" y="78" width="285" height="116" class="box" fill="#fae8ff" stroke="#c084fc"/>
+    <text x="142" y="125" class="label">调用算法服务</text>
+    <text x="142" y="157" class="desc">resume-cut-docker</text>
+    <text x="142" y="183" class="desc">解析教育 / 项目 / 技能</text>
+  </g>
+
+  <!-- Bottom row -->
+  <g transform="translate(915,555)">
+    <circle cx="50" cy="36" r="28" fill="#0f766e"/><text x="50" y="43" class="step">5</text>
+    <rect x="0" y="78" width="285" height="116" class="box" fill="#ccfbf1" stroke="#14b8a6"/>
+    <text x="142" y="125" class="label">结构化回写</text>
+    <text x="142" y="157" class="desc">结果写入 resume_content</text>
+    <text x="142" y="183" class="desc">失败项可重试</text>
+  </g>
+
+  <g transform="translate(530,555)">
+    <circle cx="50" cy="36" r="28" fill="#0f766e"/><text x="50" y="43" class="step">6</text>
+    <rect x="0" y="78" width="285" height="116" class="box" fill="#ffe4e6" stroke="#fb7185"/>
+    <text x="142" y="125" class="label">查看与修正</text>
+    <text x="142" y="157" class="desc">查看提取结果</text>
+    <text x="142" y="183" class="desc">管理员人工编辑补全</text>
+  </g>
+
+  <g transform="translate(145,555)">
+    <circle cx="50" cy="36" r="28" fill="#0f766e"/><text x="50" y="43" class="step">7</text>
+    <rect x="0" y="78" width="285" height="116" class="box" fill="#e0e7ff" stroke="#818cf8"/>
+    <text x="142" y="125" class="label">后续使用</text>
+    <text x="142" y="157" class="desc">简历评分展示</text>
+    <text x="142" y="183" class="desc">面试问题生成依据</text>
+  </g>
+
+  <!-- Clean connectors: endpoints stop at box edges, no lines run through boxes. -->
+  <path d="M320 341 L415 341" class="arrow"/>
+  <path d="M675 341 L780 341" class="arrow"/>
+  <path d="M1040 341 L1155 341" class="arrow"/>
+  <path d="M1308 399 L1308 510 L1058 510 L1058 623" class="arrow"/>
+  <path d="M915 691 L825 691" class="arrow"/>
+  <path d="M530 691 L440 691" class="arrow"/>
+</svg>

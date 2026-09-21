@@ -1,0 +1,128 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Maven / Java
+target/
+backend/admin-server/.m2repo/
+backend/admin-server/storage/
+backend/admin-server/tmp/
+backend/admin-server/.flattened-pom.xml
+backend/admin-server/hs_err_pid*
+backend/admin-server/replay_pid*
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Admin Web (Vue)
+backend/admin-web/coverage/
+backend/admin-web/.cache/
+backend/admin-web/.eslintcache
+backend/admin-web/.env.local
+backend/admin-web/.env.*.local
+
+# Spring Boot
+03-第十七届中国大学生服务外包创新创业大赛A类赛题手册.pdf
+
+# Python / interview_agent runtime
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Runtime data (do not commit local generated data/index)
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.faiss
+*.pkl
+interview_agent/memory/
+interview_agent/archives/*.json
+
+# Local Redis binaries (Windows)
+Redis/*.exe
+Redis/*.pdb
+Redis/*.dll
+Redis/*.zip
+
+# macOS zip artifacts
+__MACOSX/
+._*
+
+# resume_cut_docker local-only files
+resume_cut_docker/.env
+resume_cut_docker/target/
+
+# Local baselines, runtime and generated files
+.baselines/
+.responsive-backup-*/
+.bootstrap-logs/
+.run-logs/
+.run-state/
+tmp/
+build/
+bin/
+.gradle/
+.cache/
+.npm-cache/
+funasr-runtime-resources/
+WB_interview_agent/memory/
+WB_interview_agent/archives/
+tmp_*.wav
+docs.zip
+
+# Private environment, credentials and database exports
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.rdb
+*.aof
+/admin-auth-backup.sql
+/interview_agent.sql
+/docker-compose.local-db.yml
+/backend/admin-server/src/main/resources/application.properties
+/springboot-front(4)/src/main/resources/application.properties
+qdrant_data/
+
+# Local presentation captures may contain user/resume data
+/docs/screenshots/
+/docs/PPT_MATERIALS_ADMIN.pdf

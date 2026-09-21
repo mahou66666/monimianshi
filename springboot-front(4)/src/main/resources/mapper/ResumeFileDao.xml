@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.ResumeFileDao">
+
+    <resultMap type="com.example.springbootfront.entity.ResumeFile" id="ResumeFileMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="resumeId" column="resume_id" jdbcType="INTEGER"/>
+        <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+        <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="fileSize" column="file_size" jdbcType="INTEGER"/>
+        <result property="storagePath" column="storage_path" jdbcType="VARCHAR"/>
+        <result property="downloadUrl" column="download_url" jdbcType="VARCHAR"/>
+        <result property="previewUrl" column="preview_url" jdbcType="VARCHAR"/>
+        <result property="md5" column="md5" jdbcType="VARCHAR"/>
+        <result property="uploadTime" column="upload_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ResumeFileMap">
+        select id,
+               resume_id,
+               file_name,
+               file_type,
+               file_size,
+               storage_path,
+               download_url,
+               preview_url,
+               md5,
+               upload_time,
+               update_time
+        from resume_file
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ResumeFileMap">
+        select
+        id, resume_id, file_name, file_type, file_size, storage_path, download_url, preview_url, md5, upload_time,
+        update_time
+        from resume_file
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name = #{fileName}
+            </if>
+            <if test="fileType != null and fileType != ''">
+                and file_type = #{fileType}
+            </if>
+            <if test="fileSize != null">
+                and file_size = #{fileSize}
+            </if>
+            <if test="storagePath != null and storagePath != ''">
+                and storage_path = #{storagePath}
+            </if>
+            <if test="downloadUrl != null and downloadUrl != ''">
+                and download_url = #{downloadUrl}
+            </if>
+            <if test="previewUrl != null and previewUrl != ''">
+                and preview_url = #{previewUrl}
+            </if>
+            <if test="md5 != null and md5 != ''">
+                and md5 = #{md5}
+            </if>
+            <if test="uploadTime != null">
+                and upload_time = #{uploadTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from resume_file
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name = #{fileName}
+            </if>
+            <if test="fileType != null and fileType != ''">
+                and file_type = #{fileType}
+            </if>
+            <if test="fileSize != null">
+                and file_size = #{fileSize}
+            </if>
+            <if test="storagePath != null and storagePath != ''">
+                and storage_path = #{storagePath}
+            </if>
+            <if test="downloadUrl != null and downloadUrl != ''">
+                and download_url = #{downloadUrl}
+            </if>
+            <if test="previewUrl != null and previewUrl != ''">
+                and preview_url = #{previewUrl}
+            </if>
+            <if test="md5 != null and md5 != ''">
+                and md5 = #{md5}
+            </if>
+            <if test="uploadTime != null">
+                and upload_time = #{uploadTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_file(resume_id, file_name, file_type, file_size, storage_path, download_url, preview_url,
+                                md5, upload_time, update_time)
+        values (#{resumeId}, #{fileName}, #{fileType}, #{fileSize}, #{storagePath}, #{downloadUrl}, #{previewUrl},
+                #{md5}, #{uploadTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_file(resume_id, file_name, file_type, file_size, storage_path, download_url, preview_url,
+        md5, upload_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.resumeId}, #{entity.fileName}, #{entity.fileType}, #{entity.fileSize}, #{entity.storagePath},
+            #{entity.downloadUrl}, #{entity.previewUrl}, #{entity.md5}, #{entity.uploadTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_file(resume_id, file_name, file_type, file_size, storage_path, download_url, preview_url,
+        md5, upload_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.resumeId}, #{entity.fileName}, #{entity.fileType}, #{entity.fileSize}, #{entity.storagePath},
+            #{entity.downloadUrl}, #{entity.previewUrl}, #{entity.md5}, #{entity.uploadTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        resume_id = values(resume_id),
+        file_name = values(file_name),
+        file_type = values(file_type),
+        file_size = values(file_size),
+        storage_path = values(storage_path),
+        download_url = values(download_url),
+        preview_url = values(preview_url),
+        md5 = values(md5),
+        upload_time = values(upload_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update resume_file
+        <set>
+            <if test="resumeId != null">
+                resume_id = #{resumeId},
+            </if>
+            <if test="fileName != null and fileName != ''">
+                file_name = #{fileName},
+            </if>
+            <if test="fileType != null and fileType != ''">
+                file_type = #{fileType},
+            </if>
+            <if test="fileSize != null">
+                file_size = #{fileSize},
+            </if>
+            <if test="storagePath != null and storagePath != ''">
+                storage_path = #{storagePath},
+            </if>
+            <if test="downloadUrl != null and downloadUrl != ''">
+                download_url = #{downloadUrl},
+            </if>
+            <if test="previewUrl != null and previewUrl != ''">
+                preview_url = #{previewUrl},
+            </if>
+            <if test="md5 != null and md5 != ''">
+                md5 = #{md5},
+            </if>
+            <if test="uploadTime != null">
+                upload_time = #{uploadTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from resume_file
+        where id = #{id}
+    </delete>
+
+</mapper>
+

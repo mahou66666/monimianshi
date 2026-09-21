@@ -1,0 +1,6 @@
+{"industry":"computer_backend","role":"backend_engineer","topic":"mysql_index","difficulty":"mid","text":"考点：MySQL 联合索引设计。追问方向：为什么把区分度更高字段放前面？在 where + order by 混合场景下如何避免 filesort？扣分点：只背概念，无法结合 explain 分析实际 SQL。","metadata":{"category":"interview_points","source":"template_v1"}}
+{"industry":"computer_backend","role":"backend_engineer","topic":"redis_consistency","difficulty":"mid","text":"考点：缓存与数据库一致性。追问方向：延迟双删参数如何选？并发写时如何降低脏读窗口？扣分点：只说删除缓存，不说明异常重试与监控补偿。","metadata":{"category":"interview_points","source":"template_v1"}}
+{"industry":"computer_backend","role":"backend_engineer","topic":"mq_idempotency","difficulty":"mid","text":"考点：消息重复消费幂等。追问方向：幂等键如何设计？去重表/状态机如何过期清理？扣分点：把 exactly-once 当成天然保证，缺少业务侧幂等策略。","metadata":{"category":"interview_points","source":"template_v1"}}
+{"industry":"computer_backend","role":"backend_engineer","topic":"capacity_planning","difficulty":"senior","text":"考点：容量评估与压测。追问方向：如何从业务峰值推导 QPS/TPS 与资源模型？扩容阈值如何设定？扣分点：没有量化指标与压测基线，只给泛化方案。","metadata":{"category":"interview_points","source":"template_v1"}}
+{"industry":"computer_backend","role":"backend_engineer","topic":"fault_drill","difficulty":"senior","text":"考点：线上故障复盘。追问方向：如何定位根因、如何设置防复发机制、如何验证修复有效性？扣分点：只有现象描述，没有时间线、证据链和改进闭环。","metadata":{"category":"interview_points","source":"template_v1"}}
+

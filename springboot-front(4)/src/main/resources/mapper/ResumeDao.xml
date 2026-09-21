@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.ResumeDao">
+
+    <resultMap type="com.example.springbootfront.entity.Resume" id="ResumeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="VARCHAR"/>
+        <result property="progress" column="progress" jdbcType="INTEGER"/>
+        <result property="category" column="category" jdbcType="VARCHAR"/>
+        <result property="tags" column="tags" jdbcType="VARCHAR"/>
+        <result property="language" column="language" jdbcType="VARCHAR"/>
+        <result property="contentType" column="content_type" jdbcType="INTEGER"/>
+        <result property="indexName" column="index_name" jdbcType="VARCHAR"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="competeRatio" column="compete_ratio" jdbcType="NUMERIC"/>
+        <result property="isDefault" column="is_default" jdbcType="INTEGER"/>
+        <result property="parentResumeId" column="parent_resume_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ResumeMap">
+        select id,
+               user_id,
+               title,
+               num,
+               progress,
+               category,
+               tags, language, content_type, index_name, score, compete_ratio, is_default, parent_resume_id, create_time, update_time
+        from resume
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ResumeMap">
+        select
+        id, user_id, title, num, progress, category, tags, language, content_type, index_name, score, compete_ratio,
+        is_default, parent_resume_id, create_time, update_time
+        from resume
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="num != null and num != ''">
+                and num = #{num}
+            </if>
+            <if test="progress != null">
+                and progress = #{progress}
+            </if>
+            <if test="category != null and category != ''">
+                and category = #{category}
+            </if>
+            <if test="tags != null and tags != ''">
+                and tags = #{tags}
+            </if>
+            <if test="language != null and language != ''">
+                and language = #{language}
+            </if>
+            <if test="contentType != null">
+                and content_type = #{contentType}
+            </if>
+            <if test="indexName != null and indexName != ''">
+                and index_name = #{indexName}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="competeRatio != null">
+                and compete_ratio = #{competeRatio}
+            </if>
+            <if test="isDefault != null">
+                and is_default = #{isDefault}
+            </if>
+            <if test="parentResumeId != null">
+                and parent_resume_id = #{parentResumeId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from resume
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="num != null and num != ''">
+                and num = #{num}
+            </if>
+            <if test="progress != null">
+                and progress = #{progress}
+            </if>
+            <if test="category != null and category != ''">
+                and category = #{category}
+            </if>
+            <if test="tags != null and tags != ''">
+                and tags = #{tags}
+            </if>
+            <if test="language != null and language != ''">
+                and language = #{language}
+            </if>
+            <if test="contentType != null">
+                and content_type = #{contentType}
+            </if>
+            <if test="indexName != null and indexName != ''">
+                and index_name = #{indexName}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="competeRatio != null">
+                and compete_ratio = #{competeRatio}
+            </if>
+            <if test="isDefault != null">
+                and is_default = #{isDefault}
+            </if>
+            <if test="parentResumeId != null">
+                and parent_resume_id = #{parentResumeId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into resume(user_id, title, num, progress, category, tags, language, content_type, index_name, score,
+                           compete_ratio, is_default, parent_resume_id, create_time, update_time)
+        values (#{userId}, #{title}, #{num}, #{progress}, #{category}, #{tags}, #{language}, #{contentType},
+                #{indexName}, #{score}, #{competeRatio}, #{isDefault}, #{parentResumeId}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume(user_id, title, num, progress, category, tags, language, content_type, index_name, score,
+        compete_ratio, is_default, parent_resume_id, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.title}, #{entity.num}, #{entity.progress}, #{entity.category}, #{entity.tags},
+            #{entity.language}, #{entity.contentType}, #{entity.indexName}, #{entity.score}, #{entity.competeRatio},
+            #{entity.isDefault}, #{entity.parentResumeId}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume(user_id, title, num, progress, category, tags, language, content_type, index_name, score,
+        compete_ratio, is_default, parent_resume_id, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.title}, #{entity.num}, #{entity.progress}, #{entity.category}, #{entity.tags},
+            #{entity.language}, #{entity.contentType}, #{entity.indexName}, #{entity.score}, #{entity.competeRatio},
+            #{entity.isDefault}, #{entity.parentResumeId}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        title = values(title),
+        num = values(num),
+        progress = values(progress),
+        category = values(category),
+        tags = values(tags),
+        language = values(language),
+        content_type = values(content_type),
+        index_name = values(index_name),
+        score = values(score),
+        compete_ratio = values(compete_ratio),
+        is_default = values(is_default),
+        parent_resume_id = values(parent_resume_id),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update resume
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="num != null and num != ''">
+                num = #{num},
+            </if>
+            <if test="progress != null">
+                progress = #{progress},
+            </if>
+            <if test="category != null and category != ''">
+                category = #{category},
+            </if>
+            <if test="tags != null and tags != ''">
+                tags = #{tags},
+            </if>
+            <if test="language != null and language != ''">
+                language = #{language},
+            </if>
+            <if test="contentType != null">
+                content_type = #{contentType},
+            </if>
+            <if test="indexName != null and indexName != ''">
+                index_name = #{indexName},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="competeRatio != null">
+                compete_ratio = #{competeRatio},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault},
+            </if>
+            <if test="parentResumeId != null">
+                parent_resume_id = #{parentResumeId},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from resume
+        where id = #{id}
+    </delete>
+
+</mapper>
+

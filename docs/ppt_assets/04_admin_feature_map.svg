@@ -1,0 +1,57 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:42px;font-weight:800;fill:#0f172a}
+      .sub{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:21px;fill:#64748b}
+      .center{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:31px;font-weight:800;fill:#ffffff;text-anchor:middle}
+      .h{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:24px;font-weight:800;fill:#1e293b;text-anchor:middle}
+      .p{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:17px;fill:#475569;text-anchor:middle}
+      .box{rx:22;ry:22;stroke-width:2.2}
+      .line{stroke:#94a3b8;stroke-width:4;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="800" y="78" text-anchor="middle" class="title">后台功能模块关系图</text>
+  <text x="800" y="116" text-anchor="middle" class="sub">围绕“用户、简历、JD、评分、问题库”五类核心数据展开管理</text>
+
+  <circle cx="800" cy="455" r="136" fill="#0ea5e9"/>
+  <text x="800" y="440" class="center">后台管理系统</text>
+  <text x="800" y="480" class="center">Admin Console</text>
+
+  <path d="M800 315 L800 210" class="line"/>
+  <path d="M920 390 L1155 270" class="line"/>
+  <path d="M935 515 L1155 640" class="line"/>
+  <path d="M800 595 L800 700" class="line"/>
+  <path d="M680 390 L445 270" class="line"/>
+  <path d="M665 515 L445 640" class="line"/>
+
+  <rect x="620" y="125" width="360" height="130" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="800" y="178" class="h">数据总览</text>
+  <text x="800" y="214" class="p">用图表和卡片展示业务概况</text>
+
+  <rect x="170" y="205" width="360" height="145" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="350" y="260" class="h">用户管理</text>
+  <text x="350" y="296" class="p">用户增删改查、状态控制</text>
+  <text x="350" y="324" class="p">后台权限分配与按钮控制</text>
+
+  <rect x="1070" y="205" width="360" height="145" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="1250" y="260" class="h">简历管理</text>
+  <text x="1250" y="296" class="p">PDF 上传、本地文件存储</text>
+  <text x="1250" y="324" class="p">批量解析、结果查看与编辑</text>
+
+  <rect x="170" y="570" width="360" height="145" class="box" fill="#fae8ff" stroke="#c084fc"/>
+  <text x="350" y="625" class="h">JD 管理</text>
+  <text x="350" y="661" class="p">岗位导入、岗位要求提取</text>
+  <text x="350" y="689" class="p">JD 指导建议展示</text>
+
+  <rect x="1070" y="570" width="360" height="145" class="box" fill="#fee2e2" stroke="#fb7185"/>
+  <text x="1250" y="625" class="h">简历评分</text>
+  <text x="1250" y="661" class="p">总分、维度分、雷达图</text>
+  <text x="1250" y="689" class="p">适合演示数据可视化能力</text>
+
+  <rect x="620" y="650" width="360" height="145" class="box" fill="#ccfbf1" stroke="#14b8a6"/>
+  <text x="800" y="705" class="h">通用问题库</text>
+  <text x="800" y="741" class="p">维护高频面试题与分类</text>
+  <text x="800" y="769" class="p">后续可支撑面试问答生成</text>
+
+</svg>

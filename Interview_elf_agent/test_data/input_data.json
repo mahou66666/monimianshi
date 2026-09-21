@@ -1,0 +1,12 @@
+{
+  "personal_info": {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "location": "Shanghai",
+    "summary": "Backend engineer with Python and data pipeline experience."
+  },
+  "education": "Example University, BSc in Computer Science, 2015.09-2019.06.",
+  "work_history": "Example Tech, Backend Engineer, 2020.01-2024.01. Built REST APIs with FastAPI, optimized PostgreSQL queries, maintained Kafka-based pipelines.",
+  "project_experience": "Interview Coach project, backend role. Used Python/FastAPI/LangChain, designed multi-agent orchestration, added RAG retrieval.",
+  "skills": "Python, SQL, FastAPI, LangChain, Docker, Kubernetes."
+}

@@ -1,0 +1,70 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:44px;font-weight:800;fill:#111827}
+      .sub{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:21px;fill:#64748b}
+      .zone{fill:#f8fafc;stroke:#cbd5e1;stroke-width:2;rx:30;ry:30}
+      .zone-title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:27px;font-weight:800;fill:#334155}
+      .box{rx:22;ry:22;stroke-width:2.3}
+      .label{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:23px;font-weight:800;fill:#172554;text-anchor:middle}
+      .desc{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:17px;fill:#475569;text-anchor:middle}
+      .arrow{stroke:#2563eb;stroke-width:5.2;fill:none;marker-end:url(#arrowHead)}
+      .dash{stroke-dasharray:10 8}
+      .pill{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:16px;font-weight:700;fill:#ffffff;text-anchor:middle}
+    </style>
+    <marker id="arrowHead" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="800" y="72" text-anchor="middle" class="title">后台接入 Resume Cut 算法链路</text>
+  <text x="800" y="111" text-anchor="middle" class="sub">后台负责文件、任务和数据库；算法服务负责单个文件解析；两者通过 HTTP Multipart 联动</text>
+
+  <rect x="55" y="160" width="470" height="620" class="zone"/>
+  <text x="92" y="208" class="zone-title">Admin Web</text>
+  <rect x="125" y="260" width="330" height="110" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="290" y="306" class="label">上传简历页面</text>
+  <text x="290" y="338" class="desc">勾选多份本地 PDF 记录</text>
+  <rect x="125" y="455" width="330" height="110" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="290" y="501" class="label">批量提取按钮</text>
+  <text x="290" y="533" class="desc">展示进度、成功数、失败数</text>
+  <rect x="125" y="645" width="330" height="90" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+  <text x="290" y="687" class="label">查看结果</text>
+  <text x="290" y="718" class="desc">弹窗展示结构化内容</text>
+
+  <rect x="565" y="160" width="470" height="620" class="zone"/>
+  <text x="602" y="208" class="zone-title">Admin Server</text>
+  <rect x="635" y="250" width="330" height="95" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="800" y="290" class="label">创建算法任务</text>
+  <text x="800" y="320" class="desc">AdminAlgorithmTaskService</text>
+  <rect x="635" y="405" width="330" height="95" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="800" y="445" class="label">校验文件归属</text>
+  <text x="800" y="475" class="desc">userId、resumeId、storagePath</text>
+  <rect x="635" y="560" width="330" height="95" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="800" y="600" class="label">POST Multipart</text>
+  <text x="800" y="630" class="desc">/api/resume/parse</text>
+  <rect x="635" y="690" width="330" height="70" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="800" y="734" class="label">HTML 化并回写</text>
+
+  <rect x="1075" y="160" width="470" height="620" class="zone"/>
+  <text x="1112" y="208" class="zone-title">Resume Cut Service</text>
+  <rect x="1145" y="250" width="330" height="95" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="1310" y="290" class="label">接收文件流</text>
+  <text x="1310" y="320" class="desc">ResumeController.parseOne</text>
+  <rect x="1145" y="405" width="330" height="95" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="1310" y="445" class="label">文本抽取 + LLM</text>
+  <text x="1310" y="475" class="desc">ResumeParserServiceImpl</text>
+  <rect x="1145" y="560" width="330" height="95" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="1310" y="600" class="label">返回 JSON</text>
+  <text x="1310" y="630" class="desc">BASIC_INFO / EDUCATION / SKILLS...</text>
+  <rect x="1145" y="690" width="330" height="70" class="box" fill="#fee2e2" stroke="#fb7185"/>
+  <text x="1310" y="734" class="label">不直接操作数据库</text>
+
+  <path d="M455 510 L625 298" class="arrow"/>
+  <path d="M800 345 L800 397" class="arrow"/>
+  <path d="M800 500 L800 552" class="arrow"/>
+  <path d="M965 607 L1135 298" class="arrow"/>
+  <path d="M1310 345 L1310 397" class="arrow"/>
+  <path d="M1310 500 L1310 552" class="arrow"/>
+  <path d="M1145 607 L975 724" class="arrow dash"/>
+  <path d="M635 724 L465 690" class="arrow dash"/>
+
+</svg>

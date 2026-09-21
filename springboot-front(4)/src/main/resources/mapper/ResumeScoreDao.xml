@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.ResumeScoreDao">
+
+    <resultMap type="com.example.springbootfront.entity.ResumeScore" id="ResumeScoreMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="resumeId" column="resume_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="educationScore" column="education_score" jdbcType="INTEGER"/>
+        <result property="workScore" column="work_score" jdbcType="INTEGER"/>
+        <result property="projectScore" column="project_score" jdbcType="INTEGER"/>
+        <result property="skillScore" column="skill_score" jdbcType="INTEGER"/>
+        <result property="awardScore" column="award_score" jdbcType="INTEGER"/>
+        <result property="jobFitScore" column="job_fit_score" jdbcType="INTEGER"/>
+        <result property="totalScore" column="total_score" jdbcType="INTEGER"/>
+        <result property="dimensionAnalysis" column="dimension_analysis" jdbcType="VARCHAR"/>
+        <result property="advice" column="advice" jdbcType="VARCHAR"/>
+        <result property="problemsJson" column="problems_json" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ResumeScoreMap">
+        select id,
+               resume_id,
+               user_id,
+               education_score,
+               work_score,
+               project_score,
+               skill_score,
+               award_score,
+               job_fit_score,
+               total_score,
+               dimension_analysis,
+               advice,
+               problems_json,
+               create_time,
+               update_time
+        from resume_score
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ResumeScoreMap">
+        select
+        id, resume_id, user_id, education_score, work_score, project_score, skill_score, award_score, job_fit_score,
+        total_score, dimension_analysis, advice, problems_json, create_time, update_time
+        from resume_score
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="educationScore != null">
+                and education_score = #{educationScore}
+            </if>
+            <if test="workScore != null">
+                and work_score = #{workScore}
+            </if>
+            <if test="projectScore != null">
+                and project_score = #{projectScore}
+            </if>
+            <if test="skillScore != null">
+                and skill_score = #{skillScore}
+            </if>
+            <if test="awardScore != null">
+                and award_score = #{awardScore}
+            </if>
+            <if test="jobFitScore != null">
+                and job_fit_score = #{jobFitScore}
+            </if>
+            <if test="totalScore != null">
+                and total_score = #{totalScore}
+            </if>
+            <if test="dimensionAnalysis != null and dimensionAnalysis != ''">
+                and dimension_analysis = #{dimensionAnalysis}
+            </if>
+            <if test="advice != null and advice != ''">
+                and advice = #{advice}
+            </if>
+            <if test="problemsJson != null">
+                and problems_json = #{problemsJson}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from resume_score
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="educationScore != null">
+                and education_score = #{educationScore}
+            </if>
+            <if test="workScore != null">
+                and work_score = #{workScore}
+            </if>
+            <if test="projectScore != null">
+                and project_score = #{projectScore}
+            </if>
+            <if test="skillScore != null">
+                and skill_score = #{skillScore}
+            </if>
+            <if test="awardScore != null">
+                and award_score = #{awardScore}
+            </if>
+            <if test="jobFitScore != null">
+                and job_fit_score = #{jobFitScore}
+            </if>
+            <if test="totalScore != null">
+                and total_score = #{totalScore}
+            </if>
+            <if test="dimensionAnalysis != null and dimensionAnalysis != ''">
+                and dimension_analysis = #{dimensionAnalysis}
+            </if>
+            <if test="advice != null and advice != ''">
+                and advice = #{advice}
+            </if>
+            <if test="problemsJson != null">
+                and problems_json = #{problemsJson}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_score(resume_id, user_id, education_score, work_score, project_score, skill_score,
+                                 award_score, job_fit_score, total_score, dimension_analysis, advice, problems_json,
+                                 create_time, update_time)
+        values (#{resumeId}, #{userId}, #{educationScore}, #{workScore}, #{projectScore}, #{skillScore}, #{awardScore},
+                #{jobFitScore}, #{totalScore}, #{dimensionAnalysis}, #{advice}, #{problemsJson}, #{createTime},
+                #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_score(resume_id, user_id, education_score, work_score, project_score, skill_score,
+        award_score, job_fit_score, total_score, dimension_analysis, advice, problems_json, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.resumeId}, #{entity.userId}, #{entity.educationScore}, #{entity.workScore},
+            #{entity.projectScore}, #{entity.skillScore}, #{entity.awardScore}, #{entity.jobFitScore},
+            #{entity.totalScore}, #{entity.dimensionAnalysis}, #{entity.advice}, #{entity.problemsJson},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_score(resume_id, user_id, education_score, work_score, project_score, skill_score,
+        award_score, job_fit_score, total_score, dimension_analysis, advice, problems_json, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.resumeId}, #{entity.userId}, #{entity.educationScore}, #{entity.workScore},
+            #{entity.projectScore}, #{entity.skillScore}, #{entity.awardScore}, #{entity.jobFitScore},
+            #{entity.totalScore}, #{entity.dimensionAnalysis}, #{entity.advice}, #{entity.problemsJson},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        resume_id = values(resume_id),
+        user_id = values(user_id),
+        education_score = values(education_score),
+        work_score = values(work_score),
+        project_score = values(project_score),
+        skill_score = values(skill_score),
+        award_score = values(award_score),
+        job_fit_score = values(job_fit_score),
+        total_score = values(total_score),
+        dimension_analysis = values(dimension_analysis),
+        advice = values(advice),
+        problems_json = values(problems_json),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update resume_score
+        <set>
+            <if test="resumeId != null">
+                resume_id = #{resumeId},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="educationScore != null">
+                education_score = #{educationScore},
+            </if>
+            <if test="workScore != null">
+                work_score = #{workScore},
+            </if>
+            <if test="projectScore != null">
+                project_score = #{projectScore},
+            </if>
+            <if test="skillScore != null">
+                skill_score = #{skillScore},
+            </if>
+            <if test="awardScore != null">
+                award_score = #{awardScore},
+            </if>
+            <if test="jobFitScore != null">
+                job_fit_score = #{jobFitScore},
+            </if>
+            <if test="totalScore != null">
+                total_score = #{totalScore},
+            </if>
+            <if test="dimensionAnalysis != null and dimensionAnalysis != ''">
+                dimension_analysis = #{dimensionAnalysis},
+            </if>
+            <if test="advice != null and advice != ''">
+                advice = #{advice},
+            </if>
+            <if test="problemsJson != null">
+                problems_json = #{problemsJson},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from resume_score
+        where id = #{id}
+    </delete>
+
+</mapper>
+

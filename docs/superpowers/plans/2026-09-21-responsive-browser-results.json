@@ -1,0 +1,1051 @@
+{
+  "regression": [
+    {
+      "path": "/profile/user-info",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/user-info",
+      "root": "user-info-container",
+      "overflow": false,
+      "text": 64
+    },
+    {
+      "path": "/profile/user-info",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/user-info",
+      "root": "user-info-container",
+      "overflow": false,
+      "text": 64
+    },
+    {
+      "path": "/profile/settings",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/settings",
+      "root": "settings-container",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/profile/settings",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/settings",
+      "root": "settings-container",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/profile/interview-history",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/interview-history",
+      "root": "history-page",
+      "overflow": false,
+      "text": 647
+    },
+    {
+      "path": "/profile/interview-history",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/interview-history",
+      "root": "history-page",
+      "overflow": false,
+      "text": 647
+    },
+    {
+      "path": "/profile/jd-history",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile/jd-history",
+      "root": "history-page",
+      "overflow": false,
+      "text": 381
+    },
+    {
+      "path": "/profile/jd-history",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile/jd-history",
+      "root": "history-page",
+      "overflow": false,
+      "text": 381
+    },
+    {
+      "path": "/jd/input",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/jd/input",
+      "root": "jd-input-container",
+      "overflow": false,
+      "text": 97
+    },
+    {
+      "path": "/jd/input",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/jd/input",
+      "root": "jd-input-container",
+      "overflow": false,
+      "text": 97
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/jd/result",
+      "root": "jd-result-container",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/jd/result",
+      "root": "jd-result-container",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/upload",
+      "root": "resume-upload-container",
+      "overflow": false,
+      "text": 528
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/upload",
+      "root": "resume-upload-container",
+      "overflow": false,
+      "text": 528
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/ai-result",
+      "root": "resume-result",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/ai-result",
+      "root": "resume-result",
+      "overflow": false,
+      "text": 47
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/resume/library",
+      "root": "resume-library",
+      "overflow": false,
+      "text": 502
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/resume/library",
+      "root": "resume-library",
+      "overflow": false,
+      "text": 502
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/interview/summary",
+      "root": "summary-wrapper",
+      "overflow": false,
+      "text": 301
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/interview/summary",
+      "root": "summary-wrapper",
+      "overflow": false,
+      "text": 301
+    },
+    {
+      "path": "/account/security",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/security",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 69
+    },
+    {
+      "path": "/account/security",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/security",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 69
+    },
+    {
+      "path": "/account/login",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/login",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 63
+    },
+    {
+      "path": "/account/login",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/login",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 63
+    },
+    {
+      "path": "/account/register",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/register",
+      "root": "auth-page auth-page--hero",
+      "overflow": false,
+      "text": 83
+    },
+    {
+      "path": "/account/register",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/register",
+      "root": "auth-page auth-page--hero",
+      "overflow": false,
+      "text": 83
+    },
+    {
+      "path": "/account/reset-password",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/account/reset-password",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 77
+    },
+    {
+      "path": "/account/reset-password",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/account/reset-password",
+      "root": "auth-page auth-page--compact",
+      "overflow": false,
+      "text": 77
+    },
+    {
+      "path": "/",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/",
+      "root": "home-container",
+      "overflow": false,
+      "text": 71
+    },
+    {
+      "path": "/",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/",
+      "root": "home-container",
+      "overflow": false,
+      "text": 70
+    },
+    {
+      "path": "/upload",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/upload",
+      "root": "upload-placeholder",
+      "overflow": false,
+      "text": 83
+    },
+    {
+      "path": "/upload",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/upload",
+      "root": "upload-placeholder",
+      "overflow": false,
+      "text": 83
+    },
+    {
+      "path": "/profile",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/profile",
+      "root": "profile-container",
+      "overflow": false,
+      "text": 92
+    },
+    {
+      "path": "/profile",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/profile",
+      "root": "profile-container",
+      "overflow": false,
+      "text": 92
+    },
+    {
+      "path": "/interview",
+      "size": [
+        390,
+        844
+      ],
+      "actual": "/interview",
+      "root": "interview-wrapper",
+      "overflow": false,
+      "text": 67
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1440,
+        900
+      ],
+      "actual": "/interview",
+      "root": "interview-wrapper",
+      "overflow": false,
+      "text": 67
+    }
+  ],
+  "matrix": [
+    {
+      "path": "/",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "home-container"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/account/login?preview=1",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "auth-page auth-page--compact"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/upload",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-upload-container"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/resume/library",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-library"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "interview-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/interview/summary",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "summary-wrapper"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/jd/result",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "jd-result-container"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        768,
+        1024
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1024,
+        768
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1280,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1920,
+        1080
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        767,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        768,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1199,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    },
+    {
+      "path": "/resume/ai-result",
+      "size": [
+        1200,
+        600
+      ],
+      "overflow": false,
+      "root": "resume-result"
+    }
+  ],
+  "pageErrors": []
+}

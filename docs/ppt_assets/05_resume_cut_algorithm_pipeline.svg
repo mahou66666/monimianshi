@@ -1,0 +1,73 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:44px;font-weight:800;fill:#102a43}
+      .sub{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:21px;fill:#64748b}
+      .box{rx:24;ry:24;stroke-width:2.4}
+      .label{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:24px;font-weight:800;fill:#0f172a;text-anchor:middle}
+      .desc{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:17px;fill:#475569;text-anchor:middle}
+      .tag{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:15px;font-weight:700;fill:#fff;text-anchor:middle}
+      .arrow{stroke:#0ea5e9;stroke-width:6;fill:none;marker-end:url(#arrowHead)}
+      .note{font-family:"Microsoft YaHei",Arial,sans-serif;font-size:19px;fill:#334155;text-anchor:middle}
+      .code{font-family:Consolas,"Microsoft YaHei",monospace;font-size:18px;fill:#334155;text-anchor:middle}
+    </style>
+    <marker id="arrowHead" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M2,2 L12,7 L2,12 Z" fill="#0ea5e9"/></marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0f9ff"/><stop offset="1" stop-color="#eef2ff"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="800" y="74" text-anchor="middle" class="title">Resume Cut 简历切割算法流水线</text>
+  <text x="800" y="113" text-anchor="middle" class="sub">文件读取、文本清洗、LLM 结构化、规则补强，最终返回 ResumeResultDTO</text>
+
+  <g transform="translate(70,220)">
+    <rect width="190" height="138" class="box" fill="#dbeafe" stroke="#60a5fa"/>
+    <rect x="20" y="18" width="54" height="26" rx="13" fill="#2563eb"/><text x="47" y="37" class="tag">输入</text>
+    <text x="95" y="75" class="label">简历文件</text>
+    <text x="95" y="106" class="desc">PDF / DOC / DOCX</text>
+    <text x="95" y="130" class="desc">MultipartFile 或本地路径</text>
+  </g>
+  <path d="M270 289 L360 289" class="arrow"/>
+
+  <g transform="translate(370,220)">
+    <rect width="205" height="138" class="box" fill="#dcfce7" stroke="#22c55e"/>
+    <rect x="20" y="18" width="54" height="26" rx="13" fill="#16a34a"/><text x="47" y="37" class="tag">抽取</text>
+    <text x="102" y="75" class="label">文本提取</text>
+    <text x="102" y="106" class="desc">PDFBox 读取 PDF</text>
+    <text x="102" y="130" class="desc">Apache POI 读取 Word</text>
+  </g>
+  <path d="M585 289 L675 289" class="arrow"/>
+
+  <g transform="translate(685,220)">
+    <rect width="205" height="138" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+    <rect x="20" y="18" width="54" height="26" rx="13" fill="#d97706"/><text x="47" y="37" class="tag">清洗</text>
+    <text x="102" y="75" class="label">文本压缩</text>
+    <text x="102" y="106" class="desc">合并多空格 / 多空行</text>
+    <text x="102" y="130" class="desc">降低输入 Token</text>
+  </g>
+  <path d="M900 289 L990 289" class="arrow"/>
+
+  <g transform="translate(1000,220)">
+    <rect width="225" height="138" class="box" fill="#fae8ff" stroke="#c084fc"/>
+    <rect x="20" y="18" width="54" height="26" rx="13" fill="#9333ea"/><text x="47" y="37" class="tag">LLM</text>
+    <text x="112" y="75" class="label">结构化解析</text>
+    <text x="112" y="106" class="desc">Prompt 约束 JSON 输出</text>
+    <text x="112" y="130" class="desc">temperature = 0.0</text>
+  </g>
+  <path d="M1235 289 L1325 289" class="arrow"/>
+
+  <g transform="translate(1335,220)">
+    <rect width="205" height="138" class="box" fill="#fee2e2" stroke="#fb7185"/>
+    <rect x="20" y="18" width="54" height="26" rx="13" fill="#e11d48"/><text x="47" y="37" class="tag">输出</text>
+    <text x="102" y="75" class="label">结构化结果</text>
+    <text x="102" y="106" class="desc">ResumeResultDTO</text>
+    <text x="102" y="130" class="desc">字段化简历内容</text>
+  </g>
+
+  <path d="M1438 366 C1438 465 1188 496 970 496" class="arrow"/>
+  <g transform="translate(610,455)">
+    <rect width="440" height="125" class="box" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="220" y="45" class="label">教育经历规则补强</text>
+    <text x="220" y="76" class="desc">从 BASIC_INFO、AI EDUCATION、原始文本三处合并</text>
+    <text x="220" y="102" class="desc">学校 + 学历 + 时间去重，避免教育信息丢失</text>
+  </g>
+
+</svg>

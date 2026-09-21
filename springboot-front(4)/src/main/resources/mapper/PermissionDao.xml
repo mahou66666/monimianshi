@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.PermissionDao">
+
+    <resultMap type="com.example.springbootfront.entity.Permission" id="PermissionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="permCode" column="perm_code" jdbcType="VARCHAR"/>
+        <result property="permName" column="perm_name" jdbcType="VARCHAR"/>
+        <result property="permDesc" column="perm_desc" jdbcType="VARCHAR"/>
+        <result property="menuPath" column="menu_path" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="PermissionMap">
+        select id,
+               perm_code,
+               perm_name,
+               perm_desc,
+               menu_path,
+               status,
+               create_time,
+               update_time
+        from permission
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="PermissionMap">
+        select
+        id, perm_code, perm_name, perm_desc, menu_path, status, create_time, update_time
+        from permission
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="permCode != null and permCode != ''">
+                and perm_code = #{permCode}
+            </if>
+            <if test="permName != null and permName != ''">
+                and perm_name = #{permName}
+            </if>
+            <if test="permDesc != null and permDesc != ''">
+                and perm_desc = #{permDesc}
+            </if>
+            <if test="menuPath != null and menuPath != ''">
+                and menu_path = #{menuPath}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from permission
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="permCode != null and permCode != ''">
+                and perm_code = #{permCode}
+            </if>
+            <if test="permName != null and permName != ''">
+                and perm_name = #{permName}
+            </if>
+            <if test="permDesc != null and permDesc != ''">
+                and perm_desc = #{permDesc}
+            </if>
+            <if test="menuPath != null and menuPath != ''">
+                and menu_path = #{menuPath}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into permission(perm_code, perm_name, perm_desc, menu_path, status, create_time, update_time)
+        values (#{permCode}, #{permName}, #{permDesc}, #{menuPath}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into permission(perm_code, perm_name, perm_desc, menu_path, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.permCode}, #{entity.permName}, #{entity.permDesc}, #{entity.menuPath}, #{entity.status},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into permission(perm_code, perm_name, perm_desc, menu_path, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.permCode}, #{entity.permName}, #{entity.permDesc}, #{entity.menuPath}, #{entity.status},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        perm_code = values(perm_code),
+        perm_name = values(perm_name),
+        perm_desc = values(perm_desc),
+        menu_path = values(menu_path),
+        status = values(status),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update permission
+        <set>
+            <if test="permCode != null and permCode != ''">
+                perm_code = #{permCode},
+            </if>
+            <if test="permName != null and permName != ''">
+                perm_name = #{permName},
+            </if>
+            <if test="permDesc != null and permDesc != ''">
+                perm_desc = #{permDesc},
+            </if>
+            <if test="menuPath != null and menuPath != ''">
+                menu_path = #{menuPath},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from permission
+        where id = #{id}
+    </delete>
+
+</mapper>
+

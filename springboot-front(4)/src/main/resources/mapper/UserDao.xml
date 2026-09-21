@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.UserDao">
+
+    <resultMap id="UserMap" type="com.example.springbootfront.entity.User">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="avatar" column="avatar_placeholder" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+        <result property="gradYear" column="graduation_year" jdbcType="VARCHAR"/>
+        <result property="wechat" column="wechat" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="VARCHAR"/>
+        <result property="desc" column="desc_placeholder" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="UserMap">
+        select
+        ui.id,
+        ui.phone,
+        case
+            when ud.real_name is not null and ud.real_name != '' then ud.real_name
+            else ui.user_name
+        end as name,
+        ud.gender,
+        ud.identity,
+        ud.graduation_year,
+        ud.wechat,
+        ud.birthday,
+        '' as avatar_placeholder,
+        '' as desc_placeholder
+        from user_info ui
+        left join user_detail ud on ui.id = ud.user_id
+        where ui.id = #{id}
+    </select>
+
+    <update id="updateUserInfo">
+        update user_info
+        <set>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="name != null and name != ''">
+                user_name = #{name},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="countUserDetailByUserId" resultType="java.lang.Integer">
+        select count(1)
+        from user_detail
+        where user_id = #{userId}
+    </select>
+
+    <insert id="insertUserDetail">
+        insert into user_detail (
+            user_id,
+            real_name,
+            gender,
+            identity,
+            graduation_year,
+            wechat,
+            birthday
+        ) values (
+            #{id},
+            #{name},
+            #{gender},
+            #{identity},
+            #{gradYear},
+            #{wechat},
+            #{birthday}
+        )
+    </insert>
+
+    <update id="updateUserDetail">
+        update user_detail
+        <set>
+            real_name = #{name},
+            gender = #{gender},
+            identity = #{identity},
+            graduation_year = #{gradYear},
+            wechat = #{wechat},
+            birthday = #{birthday}
+        </set>
+        where user_id = #{id}
+    </update>
+
+</mapper>

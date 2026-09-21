@@ -1,0 +1,83 @@
+# ===================== 数据源配置 =====================
+# 数据库驱动（服务器 MySQL 5.7 使用旧版驱动名）
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+# 数据库 URL
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+# 数据库用户名
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+# 数据库密码
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+# 连接池配置（HikariCP，Spring Boot 默认）
+spring.datasource.hikari.maximum-pool-size=10
+spring.datasource.hikari.minimum-idle=5
+spring.datasource.hikari.connection-timeout=30000
+spring.datasource.hikari.idle-timeout=300000
+spring.datasource.hikari.max-lifetime=540000
+
+# ===================== MyBatis-Plus 配置 =====================
+# Mapper XML 文件位置
+mybatis-plus.mapper-locations=classpath:mapper/**/*.xml
+# 实体类别名扫描包
+mybatis-plus.type-aliases-package=com.a05.admin.entity
+# 打印 SQL（开发阶段用 slf4j，上线前改为 WARN 或删除）
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.slf4j.Slf4jImpl
+# 开启驼峰映射：如 create_time -> createTime
+mybatis-plus.configuration.map-underscore-to-camel-case=true
+# 主键策略（auto 为数据库自增）
+mybatis-plus.global-config.db-config.id-type=auto
+# 逻辑删除字段
+mybatis-plus.global-config.db-config.logic-delete-field=isDeleted
+# 1 = 已删除
+mybatis-plus.global-config.db-config.logic-delete-value=1
+# 0 = 未删除
+mybatis-plus.global-config.db-config.logic-not-delete-value=0
+
+# ===================== Spring Boot 服务配置 =====================
+# 服务端口（后台管理端与前台服务分开，使用 8081）
+server.port=18081
+# 接口统一前缀：http://localhost:8081/admin/xxx
+server.servlet.context-path=/admin
+# 编码
+server.tomcat.uri-encoding=UTF-8
+server.servlet.encoding.charset=UTF-8
+server.servlet.encoding.enabled=true
+server.servlet.encoding.force=true
+
+# ===================== 日志配置 =====================
+logging.level.root=INFO
+logging.level.com.a05.admin.mapper=WARN
+logging.level.org.mybatis=WARN
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n
+
+# ===================== Redis 配置 =====================
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+spring.data.redis.password=${SPRING_DATA_REDIS_PASSWORD}
+spring.data.redis.database=0
+spring.data.redis.timeout=3000ms
+spring.data.redis.lettuce.pool.max-active=8
+spring.data.redis.lettuce.pool.max-idle=8
+spring.data.redis.lettuce.pool.min-idle=0
+
+# ===================== JWT 配置 =====================
+# JWT 签名密钥（至少 32 字节，生产环境请替换为强随机密钥）
+app.jwt.secret=${APP_JWT_SECRET}
+# JWT 有效期（秒）：7200 = 2小时
+app.jwt.expire-seconds=7200
+
+# ===================== 密码加密配置 =====================
+# BCrypt 强度（cost）：10-12 为推荐范围
+app.security.bcrypt-strength=10
+
+# ===================== File Upload =====================
+# Increase default multipart limits (Spring default is 1MB per file).
+spring.servlet.multipart.max-file-size=20MB
+spring.servlet.multipart.max-request-size=50MB
+# Avoid swallowing large request bodies when upload exceeds limits.
+server.tomcat.max-swallow-size=-1
+
+# ===================== Resume Parse Algo =====================
+app.resume-parse.enabled=true
+app.resume-parse.base-url=http://localhost:8089
+app.resume-parse.connect-timeout-ms=3000
+app.resume-parse.read-timeout-ms=120000

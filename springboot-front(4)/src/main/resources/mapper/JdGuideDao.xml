@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.JdGuideDao">
+
+    <resultMap type="com.example.springbootfront.entity.JdGuide" id="JdGuideMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="jdId" column="jd_id" jdbcType="INTEGER"/>
+        <result property="guideText" column="guide_text" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="JdGuideMap">
+        select id,
+               jd_id,
+               guide_text,
+               create_time,
+               update_time
+        from jd_guide
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="JdGuideMap">
+        select
+        id, jd_id, guide_text, create_time, update_time
+        from jd_guide
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="jdId != null">
+                and jd_id = #{jdId}
+            </if>
+            <if test="guideText != null and guideText != ''">
+                and guide_text = #{guideText}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from jd_guide
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="jdId != null">
+                and jd_id = #{jdId}
+            </if>
+            <if test="guideText != null and guideText != ''">
+                and guide_text = #{guideText}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_guide(jd_id, guide_text, create_time, update_time)
+        values (#{jdId}, #{guideText}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_guide(jd_id, guide_text, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.jdId}, #{entity.guideText}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into jd_guide(jd_id, guide_text, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.jdId}, #{entity.guideText}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        jd_id = values(jd_id),
+        guide_text = values(guide_text),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update jd_guide
+        <set>
+            <if test="jdId != null">
+                jd_id = #{jdId},
+            </if>
+            <if test="guideText != null and guideText != ''">
+                guide_text = #{guideText},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from jd_guide
+        where id = #{id}
+    </delete>
+
+</mapper>
+

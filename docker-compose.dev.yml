@@ -1,0 +1,81 @@
+name: ai-mock-interview-dev
+
+services:
+  resume-cut:
+    image: maven:3.9.9-eclipse-temurin-17
+    container_name: ai-dev-resume-cut
+    working_dir: /workspace
+    volumes:
+      - ./resume_cut_docker:/workspace
+      - maven_cache:/root/.m2
+    env_file:
+      - ./resume_cut_docker/.env
+    environment:
+      SERVER_PORT: 8089
+      TZ: Asia/Shanghai
+    command: mvn -Dmaven.test.skip=true spring-boot:run
+    ports:
+      - "8089:8089"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: ai-dev-redis
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "123456"]
+    ports:
+      - "16379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "123456", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  admin-server:
+    image: maven:3.9.9-eclipse-temurin-17
+    container_name: ai-dev-admin-server
+    working_dir: /workspace
+    volumes:
+      - ./backend/admin-server:/workspace
+      - maven_cache:/root/.m2
+    environment:
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_PASSWORD: "123456"
+      SPRING_DATA_REDIS_DATABASE: 0
+      APP_RESUME_PARSE_ENABLED: "true"
+      APP_RESUME_PARSE_BASE_URL: http://resume-cut:8089
+      APP_RESUME_PARSE_CONNECT_TIMEOUT_MS: 3000
+      APP_RESUME_PARSE_READ_TIMEOUT_MS: 120000
+    command: mvn spring-boot:run
+    ports:
+      - "18081:18081"
+    depends_on:
+      resume-cut:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  admin-web:
+    image: node:18-alpine
+    container_name: ai-dev-admin-web
+    working_dir: /workspace
+    volumes:
+      - ./backend/admin-web:/workspace
+      - ./backend/admin-web/node_modules:/workspace/node_modules
+    environment:
+      HOST: 0.0.0.0
+      VUE_APP_PROXY_TARGET: http://admin-server:18081
+    command: sh -c "npm run dev -- --host 0.0.0.0 --port 9527"
+    ports:
+      - "9527:9527"
+    depends_on:
+      - admin-server
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  maven_cache:

@@ -1,0 +1,13 @@
+.git
+.gitignore
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.env
+archives
+memory/interview_sessions.sqlite
+memory/interview_sessions.sqlite-shm
+memory/interview_sessions.sqlite-wal

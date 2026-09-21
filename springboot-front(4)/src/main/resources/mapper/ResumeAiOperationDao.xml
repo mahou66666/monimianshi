@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootfront.dao.ResumeAiOperationDao">
+
+    <resultMap type="com.example.springbootfront.entity.ResumeAiOperation" id="ResumeAiOperationMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="resumeId" column="resume_id" jdbcType="INTEGER"/>
+        <result property="aiBaseId" column="ai_base_id" jdbcType="INTEGER"/>
+        <result property="aiResumeId" column="ai_resume_id" jdbcType="INTEGER"/>
+        <result property="operationType" column="operation_type" jdbcType="INTEGER"/>
+        <result property="prompt" column="prompt" jdbcType="VARCHAR"/>
+        <result property="result" column="result" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ResumeAiOperationMap">
+        select id,
+               user_id,
+               resume_id,
+               ai_base_id,
+               ai_resume_id,
+               operation_type,
+               prompt,
+               result,
+               create_time,
+               update_time
+        from resume_ai_operation
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ResumeAiOperationMap">
+        select
+        id, user_id, resume_id, ai_base_id, ai_resume_id, operation_type, prompt, result, create_time, update_time
+        from resume_ai_operation
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="aiBaseId != null">
+                and ai_base_id = #{aiBaseId}
+            </if>
+            <if test="aiResumeId != null">
+                and ai_resume_id = #{aiResumeId}
+            </if>
+            <if test="operationType != null">
+                and operation_type = #{operationType}
+            </if>
+            <if test="prompt != null and prompt != ''">
+                and prompt = #{prompt}
+            </if>
+            <if test="result != null and result != ''">
+                and result = #{result}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from resume_ai_operation
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="resumeId != null">
+                and resume_id = #{resumeId}
+            </if>
+            <if test="aiBaseId != null">
+                and ai_base_id = #{aiBaseId}
+            </if>
+            <if test="aiResumeId != null">
+                and ai_resume_id = #{aiResumeId}
+            </if>
+            <if test="operationType != null">
+                and operation_type = #{operationType}
+            </if>
+            <if test="prompt != null and prompt != ''">
+                and prompt = #{prompt}
+            </if>
+            <if test="result != null and result != ''">
+                and result = #{result}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_ai_operation(user_id, resume_id, ai_base_id, ai_resume_id, operation_type, prompt, result,
+                                        create_time, update_time)
+        values (#{userId}, #{resumeId}, #{aiBaseId}, #{aiResumeId}, #{operationType}, #{prompt}, #{result},
+                #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_ai_operation(user_id, resume_id, ai_base_id, ai_resume_id, operation_type, prompt, result,
+        create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.resumeId}, #{entity.aiBaseId}, #{entity.aiResumeId}, #{entity.operationType},
+            #{entity.prompt}, #{entity.result}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into resume_ai_operation(user_id, resume_id, ai_base_id, ai_resume_id, operation_type, prompt, result,
+        create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.resumeId}, #{entity.aiBaseId}, #{entity.aiResumeId}, #{entity.operationType},
+            #{entity.prompt}, #{entity.result}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        resume_id = values(resume_id),
+        ai_base_id = values(ai_base_id),
+        ai_resume_id = values(ai_resume_id),
+        operation_type = values(operation_type),
+        prompt = values(prompt),
+        result = values(result),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update resume_ai_operation
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="resumeId != null">
+                resume_id = #{resumeId},
+            </if>
+            <if test="aiBaseId != null">
+                ai_base_id = #{aiBaseId},
+            </if>
+            <if test="aiResumeId != null">
+                ai_resume_id = #{aiResumeId},
+            </if>
+            <if test="operationType != null">
+                operation_type = #{operationType},
+            </if>
+            <if test="prompt != null and prompt != ''">
+                prompt = #{prompt},
+            </if>
+            <if test="result != null and result != ''">
+                result = #{result},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from resume_ai_operation
+        where id = #{id}
+    </delete>
+
+</mapper>
+

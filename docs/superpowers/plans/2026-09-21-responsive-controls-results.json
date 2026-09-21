@@ -1,0 +1,176 @@
+{
+  "previews": [
+    {
+      "width": 320,
+      "height": 568,
+      "dialogWidth": 320,
+      "dialogHeight": 568,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "dialogWidth": 736,
+      "dialogHeight": 860,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "dialogWidth": 992,
+      "dialogHeight": 691.1875,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "height": 600,
+      "dialogWidth": 1000,
+      "dialogHeight": 540,
+      "overflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "dialogWidth": 1000,
+      "dialogHeight": 860,
+      "overflow": false
+    }
+  ],
+  "reachable": [
+    {
+      "path": "/",
+      "label": "开始模拟面试",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "验证码登录",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "密码登录",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "获取验证码",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "忘记密码?",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "登录",
+      "pass": true
+    },
+    {
+      "path": "/account/login?preview=1",
+      "label": "注册",
+      "pass": true
+    },
+    {
+      "path": "/resume/upload",
+      "label": "返回",
+      "pass": true
+    },
+    {
+      "path": "/resume/upload",
+      "label": "历史记录",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "返回",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "上传简历",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Continue optimize",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Download resume",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Set as default",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Delete resume",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Set as default",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Delete resume",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Set as default",
+      "pass": true
+    },
+    {
+      "path": "/resume/library",
+      "label": "Delete resume",
+      "pass": true
+    },
+    {
+      "path": "/interview",
+      "label": "关闭面试",
+      "pass": true
+    },
+    {
+      "path": "/interview",
+      "label": "切换文字输入",
+      "pass": true
+    },
+    {
+      "path": "/interview",
+      "label": "开始录音",
+      "pass": true
+    },
+    {
+      "path": "/interview",
+      "label": "结束面试",
+      "pass": true
+    },
+    {
+      "path": "/interview/summary",
+      "label": "‹",
+      "pass": true
+    },
+    {
+      "path": "/interview/summary",
+      "label": "首页",
+      "pass": true
+    },
+    {
+      "path": "/interview/summary",
+      "label": "再次对练",
+      "pass": true
+    }
+  ]
+}
