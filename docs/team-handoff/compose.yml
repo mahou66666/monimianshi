@@ -1,0 +1,29 @@
+name: interview-team-local
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: zzh
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      TZ: Asia/Shanghai
+    ports:
+      - "127.0.0.1:13306:3306"
+    volumes:
+      - team_mysql:/var/lib/mysql
+      - ./01-admin-schema-seed.sql:/docker-entrypoint-initdb.d/01-admin.sql:ro
+      - ./02-studio-schema-seed.sql:/docker-entrypoint-initdb.d/02-studio.sql:ro
+      - ./03-grant.sql:/docker-entrypoint-initdb.d/03-grant.sql:ro
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci"]
+  redis:
+    image: redis:7.2-alpine
+    environment:
+      REDIS_PASSWORD: ${TEAM_REDIS_PASSWORD:?Set TEAM_REDIS_PASSWORD}
+    command: ["sh", "-c", "exec redis-server --appendonly yes --requirepass \"$$REDIS_PASSWORD\""]
+    ports:
+      - "127.0.0.1:16379:6379"
+    volumes:
+      - team_redis:/data
+volumes:
+  team_mysql:
+  team_redis:
