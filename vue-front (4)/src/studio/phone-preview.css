@@ -1,0 +1,10 @@
+/* A responsive device shell; typography and controls keep their normal size. */
+@media (max-width:767px) {
+  .device-preview{box-sizing:border-box;height:100dvh;padding:16px 12px;background:#d3d6db;display:flex;justify-content:center;align-items:center;overflow:hidden}
+  .device-preview>.studio{position:relative;isolation:isolate;width:100%;max-width:448px;height:100%;max-height:900px;min-height:0;border:9px solid #252525;border-radius:44px;overflow:hidden;box-shadow:0 20px 45px #20252d26}
+  .device-preview .device-scroll{height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#c3c7bc transparent}
+  .device-preview .studio-main{min-height:100%}
+  .device-preview .studio .bottom-nav{position:absolute}
+  .device-preview .studio .room-main{min-height:100%;height:auto}
+  .device-preview .studio .interview-room{height:100%;min-height:0}
+}

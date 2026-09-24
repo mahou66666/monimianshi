@@ -1,0 +1,8 @@
+<script setup>
+import { computed,ref } from 'vue';import { useRoute,useRouter } from 'vue-router';import { studio } from '../store.js';import { findAudioSample } from '../services/audioSamples.js';
+const route=useRoute(),router=useRouter(),heard=ref(false),failed=ref(false);
+const s=computed(()=>studio.state.value.sessions.find(x=>x.id===route.params.sessionId));
+const sample=computed(()=>findAudioSample(s.value?.questions[0]?.id));
+function start(mode){studio.call('setInputMode',s.value.id,mode);studio.call('startSession',s.value.id);router.push(`/interviews/${s.value.id}/room`)}
+</script>
+<template><section v-if="s&&s.status!=='completed'" class="card device-page"><span class="badge">DEMO · 面试前准备</span><h1>选择你想体验的回答方式。</h1><p class="muted">{{s.roleName}} · 可以随时切换为文字回答</p><div class="two-col"><article class="reference"><h2>示例音频模式</h2><p>播放岗位示例，确认转写后提交，体验完整表达分析报告。</p><audio v-if="sample" controls :src="sample.file" preload="metadata" aria-label="面试前示例音频" @error="failed=true"/><p class="small muted">这是本地合成语音，不需要麦克风权限，也不会录制你的声音。</p><p v-if="failed" class="error">示例音频无法加载，可以使用文字模式。</p><label class="check-label"><input type="checkbox" v-model="heard"/>我已确认示例音频可以播放</label><button class="button primary wide" :disabled="!heard||failed||!sample" @click="start('demo-audio')">使用示例音频开始</button></article><article><h2>文字回答模式</h2><p>直接输入自己的思路，完成后查看内容四维分析。表达指标会标记为未评估。</p><button class="button secondary" @click="start('text')">使用文字开始</button><p class="notice">真实麦克风录制、语音识别与情感分析尚未接入。演示模式不会伪装成真实检测成功。</p></article></div></section><section v-else class="card empty"><h1>这次面试不可开始</h1><RouterLink to="/interviews">返回面试记录</RouterLink></section></template>

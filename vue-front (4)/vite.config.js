@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
-      vueDevTools(),
+      ...(env.VITE_ENABLE_DEVTOOLS === 'true' ? [vueDevTools()] : []),
     ],
     resolve: {
       alias: {
@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       proxy: {
+        '/api/studio': { target: env.VITE_STUDIO_API_TARGET?.trim() || 'http://127.0.0.1:8083', changeOrigin: true },
         ...(proxyTarget
           ? {
               '/api': {
@@ -36,7 +37,7 @@ export default defineConfig(({ mode }) => {
                 bypass(req) {
                   const path = req.url?.split('?')[0];
                   if (req.method === 'GET' && req.headers.accept?.includes('text/html') &&
-                      ['/resume/upload', '/resume/ai-result', '/resume/library'].includes(path)) {
+                      ['/resume/upload', '/resume/ai-result', '/resume/library', '/resumes/real'].includes(path)) {
                     return '/index.html';
                   }
                 },

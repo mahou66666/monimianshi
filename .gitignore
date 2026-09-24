@@ -126,3 +126,9 @@ qdrant_data/
 # Local presentation captures may contain user/resume data
 /docs/screenshots/
 /docs/PPT_MATERIALS_ADMIN.pdf
+
+# Private real-service uploads and integration artifacts
+**/.studio-local-files/
+**/.studio-mysql-files/
+/tmp/studio-integration/
+/tmp/studio-mysql-integration/
